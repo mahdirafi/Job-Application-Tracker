@@ -142,7 +142,7 @@ function renderInterview(){
     for  ( let interview of interviewList){
 
         let div = document.createElement('div');
-        div.className = 'flex justify-between bg-white shadow-md rounded-md p-8'
+        div.className = 'flex justify-between gap-5 bg-white shadow-md rounded-md p-8'
         div.innerHTML = ` 
          
                 <div class="space-y-6">
@@ -189,7 +189,7 @@ function renderRejected(){
     for  ( let rejected of rejectedList){
 
         let div = document.createElement('div');
-        div.className = 'flex justify-between  bg-white shadow-md rounded-md p-8'
+        div.className = 'flex justify-between gap-5 bg-white shadow-md rounded-md p-8'
         div.innerHTML = ` 
          
                 <div class="space-y-6">
