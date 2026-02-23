@@ -1,6 +1,6 @@
 let interviewList = [];
 let rejectedList = [];
-let currentStatus = 'all'
+let currentStatus = 'all' ;
 
 // header count get id
 let total = document.getElementById('total');
