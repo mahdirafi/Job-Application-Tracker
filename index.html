@@ -1,0 +1,424 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Job Application Tracker</title>
+    <!-- Tailwind CSS -->
+    <!-- <script src="https://cdn.jsdelivr.net/npm/@tailwindcss/browser@4"></script> -->
+     <link href="https://cdn.jsdelivr.net/npm/daisyui@5" rel="stylesheet" type="text/css" />
+<script src="https://cdn.jsdelivr.net/npm/@tailwindcss/browser@4"></script>
+    <!-- icons -->
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/7.0.1/css/all.min.css"
+        integrity="sha512-2SwdPD6INVrV/lHTZbO2nodKhrnDdJK9/kg2XD1r9uGqPo1cUbujc+IYdlYdEErWNu69gVcYgdxlmVmzTWnetw=="
+        crossorigin="anonymous" referrerpolicy="no-referrer" />
+    <!-- fonts -->
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Geist:wght@100..900&display=swap" rel="stylesheet">
+    <!-- <style>
+        body{font-family: "Geist", sans-serif; } 
+    </style> -->
+</head>
+
+<body class="bg-[#f8fafc]">
+    <header class=" w-[90%] md:w-[90%] mx-auto text-[#a09d9d] py-15">
+         
+            <h2 class="text-[#002C5C] text-6xl font-bold">Job Application Tracker</h2>
+  <div class="grid grid-cols-3 gap-8 mt-10">
+            <div class="  p-5 bg-white font-medium text-2xl rounded-sm">
+                <p class="text-[#323B49] font-semibold">Total</p>
+                <p id="total" class="text-[#002C5C] text-3xl font-semibold">0</p>
+            </div>
+            <div class="  p-5 bg-white font-medium text-2xl rounded-sm">
+                <p class="text-[#323B49] font-semibold">Interview</p>
+                <p id="interviewCount" class="text-[#10B981] text-3xl font-semibold">0</p>
+            </div>
+            <div class=" p-5 bg-white font-medium text-2xl rounded-sm">
+                <p class="text-[#323B49] font-semibold">Rejected</p>
+                <p id="rejectedCount" class="text-[#EF4444] text-3xl font-semibold">0</p>
+            </div>
+        </div>
+    </header>
+    <hr class="my-5 opacity-20">
+    <!-- main container -->
+
+    <main class="w-[80%] mx-auto ">
+        <div class="flex justify-between mb-6 font-bold text-[#002C5C]">
+            <h2 class="text-2xl">Available Jobs</h2>
+            <p id="total">0 <span>jobs</span></p>
+        </div>
+        <div class="mb-6 flex gap-4">
+            <button onclick="toggleStyle('all-filter-btn')"
+                class="bg-[#3B82F6] text-xl font-semibold text-white  px-10 py-2 rounded-sm shadow-2xl"
+                id="all-filter-btn">All</button>
+
+            <button onclick="toggleStyle('interview-filter-btn')"
+                class="text-xl font-semibold text-[#323B49] px-5 py-2 rounded-sm shadow-2xl  "
+                id="interview-filter-btn">Interview</button>
+
+            <button onclick="toggleStyle('rejected-filter-btn')"
+                class="text-xl font-semibold text-[#323B49] px-5 py-2 rounded-sm shadow-2xl"
+                id="rejected-filter-btn">Rejected</button>
+        </div>
+
+        <!-- filtered Section -->
+        <div id="filtered-section" class="hidden">
+
+        </div>
+        <!-- all card -->
+        <div class=" space-y-6" id="allCards">
+            <!-- card-1 -->
+
+            <div class="flex justify-between  bg-white shadow-md rounded-md p-8 ">
+                <!-- main card part 4 -->
+                <div class="space-y-6">
+                    <div>
+                        <p class="jobName text-2xl text-[#002C5C] font-bold">TechVision Ltd </p>
+                        <p class="positionName font-semibold mt-2 text-[#64748B]">Frontend Engineer (Vue.js) </p>
+                    </div>
+                    <div>
+                        <p class="work font-semibold ">Hybrid • Full-time • $90,000 - $120,000</p>
+                    </div>
+                    <!-- part 2 -->
+                    <div class="flex gap-4">
+                        <p class="apply light px-4 py-2 font-semibold text-[#002C5C] bg-blue-50">NOT APPLIED</p>
+
+                    </div>
+                    <!-- part 3 -->
+                    <div>
+
+                        <p class="notes text-[#535e6efb] font-semibold"> Develop modern web interfaces with Vue.js and
+                            collaborate with UX designers to deliver seamless user experiences. </p>
+
+                    </div>
+
+                    <div class="flex gap-5">
+                        <button
+                            class="interview-btn px-4 py-2  text-[#10B981] font-bold border border-green-700 rounded-md">
+                            INTERVIEW </button>
+                        <button class="rejected-btn px-4 py-2  text-red-700 font-bold border border-red-700 rounded-md">
+                            REJECTED</button>
+
+                    </div>
+                </div>
+                <!-- delete -->
+                <div>
+                    <button class="btn-delete px-4 py-2  "><i class="fa-solid fa-trash-can"></i></button>
+                </div>
+            </div>
+
+            <div class="flex justify-between  bg-white shadow-md rounded-md p-8 ">
+                <!-- main card part 4 -->
+                <div class="space-y-6">
+                    <div>
+                        <p class="jobName text-2xl text-[#002C5C] font-bold">CloudWorks Inc </p>
+                        <p class="positionName font-semibold mt-2 text-[#64748B]">DevOps Engineer </p>
+                    </div>
+                    <div>
+                        <p class="work font-semibold ">Remote • Contract • $100,000 - $140,000</p>
+                    </div>
+                    <!-- part 2 -->
+                    <div class="flex gap-4">
+                        <p class="apply light px-4 py-2 font-semibold text-[#002C5C] bg-blue-50">NOT APPLIED</p>
+
+                    </div>
+                    <!-- part 3 -->
+                    <div>
+
+                        <p class="notes text-[#535e6efb] font-semibold">Manage CI/CD pipelines, automate deployments,
+                            and ensure cloud infrastructure reliability across AWS and Azure. </p>
+
+                    </div>
+
+                    <div class="flex gap-5">
+                        <button
+                            class="interview-btn px-4 py-2  text-[#10B981] font-bold border border-green-700 rounded-md">
+                            INTERVIEW </button>
+                        <button class="rejected-btn px-4 py-2  text-red-700 font-bold border border-red-700 rounded-md">
+                            REJECTED</button>
+
+                    </div>
+                </div>
+                <!-- delete -->
+                <div>
+                    <button class="btn-delete px-4 py-2  "><i class="fa-solid fa-trash-can"></i></button>
+                </div>
+            </div>
+
+            <!-- 1 -->
+            <div class="flex justify-between bg-white shadow-md rounded-md p-8">
+                <div class="space-y-6">
+                    <div>
+                        <p class="jobName text-2xl text-[#002C5C] font-bold">TechVision Ltd</p>
+                        <p class="positionName font-semibold mt-2 text-[#64748B]">Frontend Engineer (Vue.js)</p>
+                    </div>
+                    <div>
+                        <p class="work font-semibold">Hybrid • Full-time • $90,000 - $120,000</p>
+                    </div>
+                    <div class="flex gap-4">
+                        <p class="apply px-4 py-2 font-semibold text-[#002C5C] bg-blue-50">NOT APPLIED</p>
+                    </div>
+                    <div>
+                        <p class="notes text-[#535e6efb] font-semibold">Develop modern web interfaces with Vue.js and
+                            collaborate with UX designers to deliver seamless user experiences.</p>
+                    </div>
+                    <div class="flex gap-5">
+                        <button
+                            class="interview-btn px-4 py-2 text-[#10B981] font-bold border border-green-700 rounded-md">INTERVIEW</button>
+                        <button
+                            class="rejected-btn px-4 py-2 text-red-700 font-bold border border-red-700 rounded-md">REJECTED</button>
+                    </div>
+                </div>
+                <div>
+                    <button class="btn-delete px-4 py-2"><i class="fa-solid fa-trash-can"></i></button>
+                </div>
+            </div>
+
+            <!-- 2 -->
+            <div class="flex justify-between bg-white shadow-md rounded-md p-8">
+                <div class="space-y-6">
+                    <div>
+                        <p class="jobName text-2xl text-[#002C5C] font-bold">CloudWorks Inc</p>
+                        <p class="positionName font-semibold mt-2 text-[#64748B]">DevOps Engineer</p>
+                    </div>
+                    <div>
+                        <p class="work font-semibold">Remote • Contract • $100,000 - $140,000</p>
+                    </div>
+                    <div class="flex gap-4">
+                        <p class="apply px-4 py-2 font-semibold text-[#002C5C] bg-blue-50">NOT APPLIED</p>
+                    </div>
+                    <div>
+                        <p class="notes text-[#535e6efb] font-semibold">Manage CI/CD pipelines, automate deployments,
+                            and ensure cloud infrastructure reliability across AWS and Azure.</p>
+                    </div>
+                    <div class="flex gap-5">
+                        <button
+                            class="interview-btn px-4 py-2 text-[#10B981] font-bold border border-green-700 rounded-md">INTERVIEW</button>
+                        <button
+                            class="rejected-btn px-4 py-2 text-red-700 font-bold border border-red-700 rounded-md">REJECTED</button>
+                    </div>
+                </div>
+                <div>
+                    <button class="btn-delete px-4 py-2"><i class="fa-solid fa-trash-can"></i></button>
+                </div>
+            </div>
+
+            <!-- 3 -->
+            <div class="flex justify-between bg-white shadow-md rounded-md p-8">
+                <div class="space-y-6">
+                    <div>
+                        <p class="jobName text-2xl text-[#002C5C] font-bold">NextGen Solutions</p>
+                        <p class="positionName font-semibold mt-2 text-[#64748B]">Backend Developer (Node.js)</p>
+                    </div>
+                    <div>
+                        <p class="work font-semibold">On-site • Full-time • $110,000 - $150,000</p>
+                    </div>
+                    <div class="flex gap-4">
+                        <p class="apply px-4 py-2 font-semibold text-[#002C5C] bg-blue-50">NOT APPLIED</p>
+                    </div>
+                    <div>
+                        <p class="notes text-[#535e6efb] font-semibold">Build scalable APIs and microservices using
+                            Node.js, ensuring high performance and security standards.</p>
+                    </div>
+                    <div class="flex gap-5">
+                        <button
+                            class="interview-btn px-4 py-2 text-[#10B981] font-bold border border-green-700 rounded-md">INTERVIEW</button>
+                        <button
+                            class="rejected-btn px-4 py-2 text-red-700 font-bold border border-red-700 rounded-md">REJECTED</button>
+                    </div>
+                </div>
+                <div>
+                    <button class="btn-delete px-4 py-2"><i class="fa-solid fa-trash-can"></i></button>
+                </div>
+            </div>
+
+            <!-- 4 -->
+            <div class="flex justify-between bg-white shadow-md rounded-md p-8">
+                <div class="space-y-6">
+                    <div>
+                        <p class="jobName text-2xl text-[#002C5C] font-bold">AI Dynamics</p>
+                        <p class="positionName font-semibold mt-2 text-[#64748B]">Machine Learning Engineer</p>
+                    </div>
+                    <div>
+                        <p class="work font-semibold">Remote • Full-time • $140,000 - $180,000</p>
+                    </div>
+                    <div class="flex gap-4">
+                        <p class="apply px-4 py-2 font-semibold text-[#002C5C] bg-blue-50">NOT APPLIED</p>
+                    </div>
+                    <div>
+                        <p class="notes text-[#535e6efb] font-semibold">Design and train ML models for predictive
+                            analytics, working with large datasets to improve product intelligence.</p>
+                    </div>
+                    <div class="flex gap-5">
+                        <button
+                            class="interview-btn px-4 py-2 text-[#10B981] font-bold border border-green-700 rounded-md">INTERVIEW</button>
+                        <button
+                            class="rejected-btn px-4 py-2 text-red-700 font-bold border border-red-700 rounded-md">REJECTED</button>
+                    </div>
+                </div>
+                <div>
+                    <button class="btn-delete px-4 py-2"><i class="fa-solid fa-trash-can"></i></button>
+                </div>
+            </div>
+
+            <!-- 5 -->
+            <div class="flex justify-between bg-white shadow-md rounded-md p-8">
+                <div class="space-y-6">
+                    <div>
+                        <p class="jobName text-2xl text-[#002C5C] font-bold">CyberSecure Corp</p>
+                        <p class="positionName font-semibold mt-2 text-[#64748B]">Cybersecurity Analyst</p>
+                    </div>
+                    <div>
+                        <p class="work font-semibold">Hybrid • Full-time • $95,000 - $130,000</p>
+                    </div>
+                    <div class="flex gap-4">
+                        <p class="apply px-4 py-2 font-semibold text-[#002C5C] bg-blue-50">NOT APPLIED</p>
+                    </div>
+                    <div>
+                        <p class="notes text-[#535e6efb] font-semibold">Monitor network security, detect
+                            vulnerabilities, and implement solutions to protect sensitive company data.</p>
+                    </div>
+                    <div class="flex gap-5">
+                        <button
+                            class="interview-btn px-4 py-2 text-[#10B981] font-bold border border-green-700 rounded-md">INTERVIEW</button>
+                        <button
+                            class="rejected-btn px-4 py-2 text-red-700 font-bold border border-red-700 rounded-md">REJECTED</button>
+                    </div>
+                </div>
+                <div>
+                    <button class="btn-delete px-4 py-2"><i class="fa-solid fa-trash-can"></i></button>
+                </div>
+            </div>
+
+            <!-- 6 -->
+            <div class="flex justify-between bg-white shadow-md rounded-md p-8">
+                <div class="space-y-6">
+                    <div>
+                        <p class="jobName text-2xl text-[#002C5C] font-bold">FinTech Global</p>
+                        <p class="positionName font-semibold mt-2 text-[#64748B]">Blockchain Developer</p>
+                    </div>
+                    <div>
+                        <p class="work font-semibold">Remote • Full-time • $120,000 - $160,000</p>
+                    </div>
+                    <div class="flex gap-4">
+                        <p class="apply px-4 py-2 font-semibold text-[#002C5C] bg-blue-50">NOT APPLIED</p>
+                    </div>
+                    <div>
+                        <p class="notes text-[#535e6efb] font-semibold">Develop decentralized applications and smart
+                            contracts, contributing to secure and scalable blockchain solutions.</p>
+                    </div>
+                    <div class="flex gap-5">
+                        <button
+                            class="interview-btn px-4 py-2 text-[#10B981] font-bold border border-green-700 rounded-md">INTERVIEW</button>
+                        <button
+                            class="rejected-btn px-4 py-2 text-red-700 font-bold border border-red-700 rounded-md">REJECTED</button>
+                    </div>
+                </div>
+                <div>
+                    <button class="btn-delete px-4 py-2"><i class="fa-solid fa-trash-can"></i></button>
+                </div>
+            </div>
+
+            <!-- 7 -->
+            <div class="flex justify-between bg-white shadow-md rounded-md p-8">
+                <div class="space-y-6">
+                    <div>
+                        <p class="jobName text-2xl text-[#002C5C] font-bold">HealthTech Systems</p>
+                        <p class="positionName font-semibold mt-2 text-[#64748B]">Full Stack Developer</p>
+                    </div>
+                    <div>
+                        <p class="work font-semibold">On-site • Full-time • $100,000 - $135,000</p>
+                    </div>
+                    <div class="flex gap-4">
+                        <p class="apply px-4 py-2 font-semibold text-[#002C5C] bg-blue-50">NOT APPLIED</p>
+                    </div>
+                    <div>
+                        <p class="notes text-[#535e6efb] font-semibold">Work on healthcare platforms integrating
+                            frontend and backend systems to deliver patient-focused solutions.</p>
+                    </div>
+                    <div class="flex gap-5">
+                        <button
+                            class="interview-btn px-4 py-2 text-[#10B981] font-bold border border-green-700 rounded-md">INTERVIEW</button>
+                        <button
+                            class="rejected-btn px-4 py-2 text-red-700 font-bold border border-red-700 rounded-md">REJECTED</button>
+                    </div>
+                </div>
+                <div>
+                    <button class="btn-delete px-4 py-2"><i class="fa-solid fa-trash-can"></i></button>
+                </div>
+            </div>
+
+            <!-- 8 -->
+            <div class="flex justify-between bg-white shadow-md rounded-md p-8">
+                <div class="space-y-6">
+                    <div>
+                        <p class="jobName text-2xl text-[#002C5C] font-bold">EduSoft Ltd</p>
+                        <p class="positionName font-semibold mt-2 text-[#64748B]">Mobile App Developer (Flutter)</p>
+                    </div>
+                    <div>
+                        <p class="work font-semibold">Remote • Full-time • $85,000 - $115,000</p>
+                    </div>
+                    <div class="flex gap-4">
+                        <p class="apply px-4 py-2 font-semibold text-[#002C5C] bg-blue-50">NOT APPLIED</p>
+                    </div>
+                    <div>
+                        <p class="notes text-[#535e6efb] font-semibold">Create cross-platform educational apps using
+                            Flutter, ensuring smooth performance and engaging UI.</p>
+                    </div>
+                    <div class="flex gap-5">
+                        <button
+                            class="interview-btn px-4 py-2 text-[#10B981] font-bold border border-green-700 rounded-md">INTERVIEW</button>
+                        <button
+                            class="rejected-btn px-4 py-2 text-red-700 font-bold border border-red-700 rounded-md">REJECTED</button>
+                    </div>
+                </div>
+                <div>
+                    <button class="btn-delete px-4 py-2"><i class="fa-solid fa-trash-can"></i></button>
+                </div>
+            </div>
+
+            <!-- 9 -->
+            <div class="flex justify-between bg-white shadow-md rounded-md p-8">
+                <div class="space-y-6">
+                    <div>
+                        <p class="jobName text-2xl text-[#002C5C] font-bold">GreenEnergy Tech</p>
+                        <p class="positionName font-semibold mt-2 text-[#64748B]">Data Scientist</p>
+                    </div>
+                    <div>
+                        <p class="work font-semibold">Hybrid • Full-time • $125,000 - $165,000</p>
+                    </div>
+                    <div class="flex gap-4">
+                        <p class="apply px-4 py-2 font-semibold text-[#002C5C] bg-blue-50">NOT APPLIED</p>
+                    </div>
+                    <div>
+                        <p class="notes text-[#535e6efb] font-semibold">Analyze renewable energy data, build predictive
+                            models, and provide insights to optimize energy efficiency.</p>
+                    </div>
+                    <div class="flex gap-5">
+                        <button
+                            class="interview-btn px-4 py-2 text-[#10B981] font-bold border border-green-700 rounded-md">INTERVIEW</button>
+                        <button
+                            class="rejected-btn px-4 py-2 text-red-700 font-bold border border-red-700 rounded-md">REJECTED</button>
+                    </div>
+                </div>
+                <div>
+                    <button class="btn-delete px-4 py-2"><i class="fa-solid fa-trash-can"></i></button>
+                </div>
+            </div>
+
+            
+
+
+
+
+        </div>
+    </main>
+
+
+    <script src=" script.js"></script>
+    <script src="availableJobs.js"></script>
+</body>
+
+</html>
