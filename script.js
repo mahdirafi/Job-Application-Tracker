@@ -15,6 +15,18 @@ const allCardSection = document.getElementById('allCards');
 const mainContainer = document.querySelector('main');
 const filterSection = document.getElementById('filtered-section');
 
+// for counting a interview & rejected toggle -- const
+const allBtn = document.getElementById("all-filter-btn");
+const interviewBtn = document.getElementById("interview-filter-btn");
+const rejectedBtn = document.getElementById("rejected-filter-btn");
+const totalElement = document.querySelector("main #total");
+
+ 
+const allCards = document.querySelectorAll("#allCards > div");
+const interviewButtons = document.querySelectorAll(".interview-btn");
+const rejectedButtons = document.querySelectorAll(".rejected-btn");
+const totalJobs = allCards.length;
+
 // calculate header 
 function calculateCount(){
     total.innerText = allCardSection.children.length
@@ -131,7 +143,7 @@ function renderInterview(){
     filterSection.innerHTML = '' 
     if (interviewList.length === 0) { 
         filterSection.innerHTML = `
-         <div class="text-center py-10  "> <i class="fa-regular fa-file-lines text-9xl text-blue-400"></i> 
+         <div class="text-center py-10  "> <i class="fa-regular fa-file-lines text-6xl text-blue-400"></i> 
          <p class="mt-4 text-3xl text-[#002C5C] font-bold">No Jobs Available</p> 
          <p class="mt-4 text-xl font-semibold text-gray-600">Check back soon for new job opportunities</p> 
          </div> 
@@ -142,7 +154,7 @@ function renderInterview(){
     for  ( let interview of interviewList){
 
         let div = document.createElement('div');
-        div.className = 'flex justify-between gap-5 bg-white shadow-md rounded-md p-8'
+        div.className = 'flex justify-between my-12 bg-white shadow-md rounded-md p-8 border-l-3 border-[#10B981] rounded-md'
         div.innerHTML = ` 
          
                 <div class="space-y-6">
@@ -178,7 +190,7 @@ function renderRejected(){
     filterSection.innerHTML = ''
     if (rejectedList.length === 0) { 
         filterSection.innerHTML = `
-         <div class="text-center py-10  "> <i class="fa-regular fa-file-lines text-9xl text-blue-400"></i> 
+         <div class="text-center py-10  "> <i class="fa-regular fa-file-lines text-6xl text-blue-400"></i> 
          <p class="mt-4 text-3xl text-[#002C5C] font-bold">No Jobs Available</p> 
          <p class="mt-4 text-xl font-semibold text-gray-600">Check back soon for new job opportunities</p> 
          </div> 
@@ -189,7 +201,7 @@ function renderRejected(){
     for  ( let rejected of rejectedList){
 
         let div = document.createElement('div');
-        div.className = 'flex justify-between gap-5 bg-white shadow-md rounded-md p-8'
+        div.className = 'flex justify-between gap-5 my-12 bg-white shadow-md rounded-md p-8 border-l-3 border-red-600 rounded-md'
         div.innerHTML = ` 
          
                 <div class="space-y-6">
@@ -204,7 +216,7 @@ function renderRejected(){
                     <p class="apply px-4 py-2  text-red-700 font-bold border border-red-700 rounded-md">${rejected.apply}</p>
                 </div>
                 <div>
-                    <p class="notes text-[#535e6efb] font-semibold">${rejected.notes}</p>
+                    <p class="notes text-[#535e6efb] font-semibold ">${rejected.notes}</p>
                 </div>
                 <div class="flex gap-5">
                     <button class="interview-btn px-4 py-2 text-[#10B981] font-bold border border-green-700 rounded-md">INTERVIEW</button>
@@ -219,3 +231,30 @@ function renderRejected(){
         filterSection.appendChild(div)
     }
 }
+
+
+// for counting a interview & rejected toggle
+
+allBtn.addEventListener("click", function() {
+    totalElement.innerHTML = `${totalJobs} <span>jobs</span>`;
+});
+
+interviewBtn.addEventListener("click",function()  {
+    let interviewCount = document.querySelectorAll(".interview-btn.active").length;
+    totalElement.innerHTML = `${interviewCount} out of ${totalJobs} <span>jobs</span>`;
+});
+
+ 
+rejectedBtn.addEventListener("click", function() {
+    let rejectedCount = document.querySelectorAll(".rejected-btn.active").length;
+    totalElement.innerHTML = `${rejectedCount} out of ${totalJobs} <span>jobs</span>`;
+});
+ 
+for (let i = 0; i < interviewButtons.length; i++) { 
+    interviewButtons[i].addEventListener("click", function() {
+         interviewButtons[i].classList.toggle("active"); }); 
+        }
+for (let i = 0; i < rejectedButtons.length; i++) { 
+    rejectedButtons[i].addEventListener("click", function() {
+         rejectedButtons[i].classList.toggle("active"); }); 
+        }

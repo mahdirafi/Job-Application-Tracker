@@ -13,7 +13,6 @@ allBtn.addEventListener("click", function() {
     totalElement.innerHTML = `${totalJobs} <span>jobs</span>`;
 });
 
- 
 interviewBtn.addEventListener("click",function()  {
     let interviewCount = document.querySelectorAll(".interview-btn.active").length;
     totalElement.innerHTML = `${interviewCount} out of ${totalJobs} <span>jobs</span>`;
